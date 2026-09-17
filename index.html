@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cabin Haven — Find Your Next Home</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#f8f6f1;color:#243127;line-height:1.5}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 7%;background:#fffdf9;position:sticky;top:0;z-index:10;border-bottom:1px solid #eee9df}
+.logo{font-family:Georgia,serif;font-size:25px;font-weight:700;color:#284332}.logo span{font-size:11px;display:block;letter-spacing:3px;font-family:Arial;color:#9b7954}
+nav{display:flex;gap:28px;align-items:center}nav a{text-decoration:none;color:#39463c;font-size:14px;font-weight:600}
+.btn{border:0;border-radius:10px;padding:13px 20px;background:#284332;color:white;font-weight:700;cursor:pointer}
+.hero{min-height:620px;padding:85px 7%;display:flex;align-items:center;background:linear-gradient(90deg,rgba(20,32,24,.82),rgba(20,32,24,.28)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85') center/cover}
+.hero-inner{max-width:680px;color:white}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:800;color:#e8c99c}
+h1{font-family:Georgia,serif;font-size:clamp(48px,7vw,82px);line-height:1.02;margin:16px 0}.hero p{font-size:19px;max-width:560px;color:#f4f1eb}
+.search{margin-top:34px;background:white;border-radius:16px;padding:10px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:8px;box-shadow:0 15px 45px #0005}
+.search label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#888;padding:7px 12px 0}.search input,.search select{width:100%;border:0;outline:0;padding:4px 12px 12px;font-size:14px;background:white;color:#333}
+section{padding:75px 7%}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px}.section-head h2{font-family:Georgia,serif;font-size:38px}.muted{color:#72776f}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 6px 25px #26332612}.photo{height:230px;background-size:cover;background-position:center;position:relative}.tag{position:absolute;top:14px;left:14px;background:white;padding:7px 11px;border-radius:30px;font-size:11px;font-weight:800}.card-body{padding:20px}.price{font-size:22px;font-weight:800;color:#284332}.price small{font-size:12px;color:#777;font-weight:500}.card h3{margin:7px 0 4px;font-family:Georgia,serif;font-size:22px}.meta{font-size:13px;color:#737a73}.details{display:flex;gap:16px;border-top:1px solid #eee;margin-top:16px;padding-top:14px;font-size:12px;color:#626960}
+.steps{background:#eeeae1}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.step{background:#fffdf9;border-radius:18px;padding:30px}.num{width:38px;height:38px;border-radius:50%;background:#284332;color:white;display:grid;place-items:center;font-weight:800;margin-bottom:20px}
+.host{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:#294333;color:white;border-radius:25px}.host-img{min-height:390px;background:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85') center/cover}.host-copy{padding:55px;display:flex;flex-direction:column;justify-content:center}.host-copy h2{font-family:Georgia,serif;font-size:42px;line-height:1.1;margin-bottom:16px}.host-copy p{color:#dbe4dc;margin-bottom:25px}
+footer{padding:45px 7%;background:#18251c;color:#d9e0da;display:flex;justify-content:space-between;gap:20px}.footer-logo{font-family:Georgia,serif;font-size:23px;color:white}.footer-note{font-size:12px;color:#9da89f}
+@media(max-width:800px){nav a:not(:last-child){display:none}.hero{padding:70px 6%;min-height:650px}.search{grid-template-columns:1fr}.grid,.step-grid{grid-template-columns:1fr}.host{grid-template-columns:1fr}.host-img{min-height:250px}.host-copy{padding:35px}.section-head{display:block}.section-head h2{margin-bottom:8px}footer{display:block}.footer-note{margin-top:12px}}
+
+.booking{background:#fffdf9;border:1px solid #e8e1d6;border-radius:22px;padding:28px;margin-top:20px;box-shadow:0 8px 28px #2633260d}
+.booking h3{font-family:Georgia,serif;font-size:28px;margin-bottom:8px}
+.booking p{color:#697069;margin-bottom:18px}
+.tiktok{display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-left:10px;padding:13px 18px;border-radius:10px;border:1px solid #284332;color:#284332;font-weight:800}
+.gallery-title{margin-top:65px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery-item{height:210px;border-radius:16px;background-size:cover;background-position:center;position:relative;overflow:hidden;cursor:pointer}
+.gallery-item span{position:absolute;left:12px;bottom:12px;background:#fff;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800}
+.book-btn{width:100%;margin-top:16px}
+@media(max-width:800px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.gallery-item{height:180px}.tiktok{margin:10px 0 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">The Cabin Haven<span>PROPERTY RENTALS</span></div>
+  <nav><a href="#explore">Explore</a><a href="#how">How it works</a><a href="#host">List a property</a><button class="btn" onclick="alert('Sign-in will be connected in the next version.')">Sign in</button></nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">A better way to find home</div>
+<h1>Find a place worth coming home to.</h1>
+<p>Discover cosy cabins, cottages and homes across the UK and around the world—beautiful stays designed around your lifestyle and budget.</p>
+<div class="search">
+<div><label>Location</label><input id="loc" placeholder="London, Manchester, Toronto..."></div>
+<div><label>Country</label><select id="country"><option>Any country</option><option>United Kingdom</option><option>United States</option><option>Canada</option><option>Germany</option><option>France</option><option>Japan</option><option>Australia</option><option>Nigeria</option><option>Spain</option><option>Italy</option><option>Netherlands</option><option>Ireland</option><option>Switzerland</option><option>United Arab Emirates</option></select></div>
+<div><label>Property</label><select id="type"><option>Any type</option><option>Cabin</option><option>Cottage</option><option>House</option><option>Apartment</option></select></div>
+<div><label>Bedrooms</label><select id="beds"><option>Any</option><option>1+</option><option>2+</option><option>3+</option><option>4+</option></select></div>
+<button class="btn" onclick="searchHomes()">Search</button>
+</div>
+</div>
+</section>
+
+<section id="explore">
+<div class="section-head"><div><h2>Featured homes</h2><p class="muted">Hand-picked spaces to get you inspired.</p></div><button class="btn" onclick="alert('More listings coming soon.')">View all</button></div>
+<div class="grid" id="listings">
+<article class="card" data-location="New Forest Hampshire" data-country="United Kingdom" data-type="Cabin" data-beds="1">
+  <div class="photo" style="background-image:url('https://www.canopyandstars.co.uk/var/self_catering_site/storage/images/canopy-and-stars/britain/england/northamptonshire/little-purston-farm/skylark-at-little-purston-farm/skylark-at-little-purston-farm-gallery/skylark-exterior/198149179-1-eng-GB/skylark-exterior_cs_large_gallery_preview.jpg')"><span class="tag">£150 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£150 <small>/ night</small></div><h3>Woodland Haven Cabin</h3><div class="meta">New Forest, Hampshire, UK</div><div class="details"><span>🛏 1 bed</span><span>🔥 Wood burner</span><span>🌲 Woodland</span></div></div>
+</article>
+
+<article class="card" data-location="Northumberland" data-country="United Kingdom" data-type="Cabin" data-beds="1">
+  <div class="photo" style="background-image:url('https://www.canopyandstars.co.uk/var/self_catering_site/storage/images/canopy-and-stars/britain/england/devon/rusty-sheds/pointy/pointy-gallery/exterior-view-of-the-cabin/196841007-1-eng-GB/exterior-view-of-the-cabin_1024_wide.jpg')"><span class="tag">£190 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£190 <small>/ night</small></div><h3>Valley View Cabin</h3><div class="meta">Northumberland, UK</div><div class="details"><span>🛏 1 bed</span><span>🛁 Hot tub</span><span>🌄 Valley views</span></div></div>
+</article>
+
+<article class="card" data-location="Curry Rivel Somerset" data-country="United Kingdom" data-type="Cabin" data-beds="1">
+  <div class="photo" style="background-image:url('https://a0.muscache.com/im/pictures/hosting/Hosting-1451356165675525902/original/e2b8fb72-a597-4b46-bc91-ec48bb3b268c.jpeg?auto=webp&im_w=720&quality=70&width=720')"><span class="tag">£165 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£165 <small>/ night</small></div><h3>Silver Birch Cabin</h3><div class="meta">Somerset, England, UK</div><div class="details"><span>🛏 1 bed</span><span>🌿 Private deck</span><span>🌳 Countryside</span></div></div>
+</article>
+
+<article class="card" data-location="Exmoor Devon" data-country="United Kingdom" data-type="Cabin" data-beds="2">
+  <div class="photo" style="background-image:url('https://a0.muscache.com/im/pictures/hosting/Hosting-776880955512464834/original/7e7bf3a6-4d60-4e24-9b56-deb64c5a6439.jpeg?im_w=720')"><span class="tag">£175 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£175 <small>/ night</small></div><h3>Exmoor Meadow Cabin</h3><div class="meta">Exmoor, England, UK</div><div class="details"><span>🛏 2 beds</span><span>🔥 Fire pit</span><span>🌳 Private grounds</span></div></div>
+</article>
+
+<article class="card" data-location="Wales Snowdonia" data-country="United Kingdom" data-type="Cabin" data-beds="1">
+  <div class="photo" style="background-image:url('https://media.cntraveller.com/photos/65ddd662641e23dc714199c4/master/w_1024%2Cc_limit/The%2520Granary%2C%2520Headbourne%2520Worthy-cotswolds-feb24-pr-global.jpeg')"><span class="tag">£190 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£190 <small>/ night</small></div><h3>Forest Edge Cabin</h3><div class="meta">Wales, UK</div><div class="details"><span>🛏 1 bed</span><span>🛁 Soaking bath</span><span>🌲 Forest</span></div></div>
+</article>
+
+<article class="card" data-location="Scottish Highlands" data-country="United Kingdom" data-type="Cabin" data-beds="2">
+  <div class="photo" style="background-image:url('https://a0.muscache.com/im/pictures/miso/Hosting-1242560509043073470/original/1e3bac64-a8ca-4775-9377-4643b780b8e2.jpeg?auto=webp&im_w=720&quality=70&width=720')"><span class="tag">£210 / NIGHT</span></div>
+  <div class="card-body"><div class="price">£210 <small>/ night</small></div><h3>Highland Sunset Cabin</h3><div class="meta">Scottish Highlands, UK</div><div class="details"><span>🛏 2 beds</span><span>🔥 Fire pit</span><span>🏔 Highland views</span></div></div>
+</article>
+</div>
+</section>
+
+<section class="steps" id="how"><div class="section-head"><div><h2>Rent with confidence</h2><p class="muted">Simple, transparent, and designed around you.</p></div></div>
+<div class="step-grid"><div class="step"><div class="num">1</div><h3>Search</h3><p class="muted">Explore homes by location, price, property type, and bedrooms.</p></div><div class="step"><div class="num">2</div><h3>Discover</h3><p class="muted">Compare photos, amenities, details, and verified listings.</p></div><div class="step"><div class="num">3</div><h3>Connect</h3><p class="muted">Contact the landlord or agent and arrange a viewing.</p></div></div>
+</section>
+
+<section id="host"><div class="host"><div class="host-img"></div><div class="host-copy"><h2>Have a property to rent?</h2><p>Put your apartment or house in front of people actively looking for their next home.</p><button class="btn" onclick="alert('Property listing will be connected in the next version.')">List your property</button></div></div></section>
+
+<section id="booking">
+<div class="booking">
+<h3>Ready to book your cabin?</h3>
+<p>Choose a cabin, select your dates, and submit a booking request. Payments are made through The Cabin Haven's official payment process—not directly to individual property advertisers.</p>
+<button class="btn book-btn" onclick="openBooking()">Book a cabin</button>
+<a class="tiktok" href="https://www.tiktok.com/@the.cabin.haven" target="_blank" rel="noopener">TikTok: @the.cabin.haven</a>
+</div>
+</section>
+
+<section class="gallery-title">
+<div class="section-head"><div><h2>Explore more cabins</h2><p class="muted">Pick the style and setting that feels right for you.</p></div></div>
+<div class="gallery-grid">
+<div class="gallery-item" onclick="openBooking('Forest Hideaway')" style="background-image:url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1000&q=85')"><span>Forest Hideaway</span></div>
+<div class="gallery-item" onclick="openBooking('Lakeside Cabin')" style="background-image:url('https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1000&q=85')"><span>Lakeside Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Mountain Cabin')" style="background-image:url('https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1000&q=85')"><span>Mountain Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Countryside Cabin')" style="background-image:url('https://images.unsplash.com/photo-1520984032042-162d526883e0?auto=format&fit=crop&w=1000&q=85')"><span>Countryside Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Cosy Woodland Cabin')" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=85')"><span>Cosy Woodland</span></div>
+<div class="gallery-item" onclick="openBooking('Luxury Cabin')" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=85')"><span>Luxury Retreat</span></div>
+<div class="gallery-item" onclick="openBooking('Riverside Cabin')" style="background-image:url('https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1000&q=85')"><span>Riverside Escape</span></div>
+<div class="gallery-item" onclick="openBooking('Snowy Cabin')" style="background-image:url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1000&q=85')"><span>Winter Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Modern Cabin')" style="background-image:url('https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1000&q=85')"><span>Modern Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Private Cabin')" style="background-image:url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85')"><span>Private Retreat</span></div>
+<div class="gallery-item" onclick="openBooking('Hillside Cabin')" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85')"><span>Hillside Cabin</span></div>
+<div class="gallery-item" onclick="openBooking('Garden Cabin')" style="background-image:url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1000&q=85')"><span>Garden Cabin</span></div>
+</div>
+</section>
+</main>
+
+<footer><div class="footer-logo">The Cabin Haven</div><div class="footer-note">© 2026 The Cabin Haven · Built for better renting.</div></footer>
+
+<script>
+function searchHomes(){
+ const loc=document.getElementById('loc').value.toLowerCase(), country=document.getElementById('country').value, type=document.getElementById('type').value, beds=document.getElementById('beds').value;
+ let shown=0;
+ document.querySelectorAll('.card').forEach(c=>{
+   const okLoc=!loc || c.dataset.location.toLowerCase().includes(loc);
+   const okCountry=country==='Any country'||c.dataset.country===country;
+   const okType=type==='Any type'||c.dataset.type===type;
+   const min=beds==='Any'?0:parseInt(beds);
+   const okBeds=parseInt(c.dataset.beds)>=min;
+   c.style.display=okLoc&&okCountry&&okType&&okBeds?'block':'none';
+   if(okLoc&&okCountry&&okType&&okBeds) shown++;
+ });
+ document.getElementById('explore').scrollIntoView({behavior:'smooth'});
+ if(!shown) alert('No matching homes in this demo yet. Try another search.');
+}
+
+function openBooking(property='your selected cabin'){
+  const dates=prompt('Enter your preferred dates for '+property+':');
+  if(dates){
+    alert('Booking request received for '+property+' ('+dates+'). The next version will connect this to The Cabin Haven payment checkout.');
+    window.open('https://www.tiktok.com/@the.cabin.haven','_blank');
+  }
+}
+</script>
+</body>
+</html>
