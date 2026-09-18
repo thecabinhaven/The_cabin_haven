@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="The Cabin Haven — discover cabins, apartments, houses, cottages and villas around the world.">
+<meta property="og:title" content="The Cabin Haven">
+<meta property="og:description" content="Find a place worth coming home to.">
+<title>The Cabin Haven — Find Your Next Home</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#284332;--dark:#18251c;--cream:#f8f6f1;--paper:#fffdf9;--line:#e8e1d6;--muted:#70786f;--gold:#b78d5c}
+body{font-family:Inter,Arial,sans-serif;background:var(--cream);color:#243127;line-height:1.5}
+button,input,select{font:inherit}button{cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(255,253,249,.96);position:sticky;top:0;z-index:30;border-bottom:1px solid #eee9df;backdrop-filter:blur(12px)}
+.logo{font-family:Georgia,serif;font-size:25px;font-weight:700;color:var(--green)}.logo span{font-size:10px;display:block;letter-spacing:3px;font-family:Arial;color:#9b7954}
+nav{display:flex;gap:22px;align-items:center}nav a{text-decoration:none;color:#39463c;font-size:14px;font-weight:700}
+.btn{border:0;border-radius:11px;padding:12px 18px;background:var(--green);color:white;font-weight:800}
+.btn.alt{background:white;color:var(--green);border:1px solid var(--green)}
+.hero{min-height:650px;padding:80px 6%;display:flex;align-items:center;background:linear-gradient(90deg,rgba(20,32,24,.86),rgba(20,32,24,.25)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85') center/cover}
+.hero-inner{max-width:760px;color:white}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:800;color:#e8c99c}
+h1{font-family:Georgia,serif;font-size:clamp(45px,7vw,80px);line-height:1.02;margin:16px 0}.hero p{font-size:19px;max-width:600px;color:#f4f1eb}
+.search{margin-top:30px;background:white;border-radius:18px;padding:10px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:7px;box-shadow:0 15px 45px #0005}
+.search .field{padding:5px 10px;border-right:1px solid #eee}.search label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#888}.search input,.search select{width:100%;border:0;outline:0;padding:5px 0;font-size:14px;background:white;color:#333}
+section{padding:70px 6%}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.section-head h2{font-family:Georgia,serif;font-size:38px}.muted{color:var(--muted)}
+.results-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px;flex-wrap:wrap}.filters{display:flex;gap:8px;flex-wrap:wrap}.filters select,.filters input{border:1px solid var(--line);background:white;border-radius:10px;padding:10px 12px;color:#374138}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 6px 25px #26332612;transition:.2s;cursor:pointer}.card:hover{transform:translateY(-3px);box-shadow:0 12px 32px #2633261c}.photo{height:235px;background-size:cover;background-position:center;position:relative}.tag{position:absolute;top:13px;left:13px;background:white;padding:6px 10px;border-radius:30px;font-size:11px;font-weight:800}.heart{position:absolute;right:13px;top:13px;border:0;background:white;width:38px;height:38px;border-radius:50%;font-size:19px}.heart.saved{color:#b44}
+.card-body{padding:19px}.price{font-size:21px;font-weight:800;color:var(--green)}.price small{font-size:12px;color:#777;font-weight:500}.card h3{margin:6px 0 3px;font-family:Georgia,serif;font-size:21px}.meta{font-size:13px;color:#737a73}.details{display:flex;gap:13px;border-top:1px solid #eee;margin-top:15px;padding-top:13px;font-size:12px;color:#626960;flex-wrap:wrap}
+.empty{display:none;text-align:center;padding:55px;background:white;border-radius:18px;border:1px solid var(--line)}
+.steps{background:#eeeae1}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.step{background:#fffdf9;border-radius:18px;padding:28px}.num{width:38px;height:38px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:800;margin-bottom:18px}
+.host{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:#294333;color:white;border-radius:25px}.host-img{min-height:390px;background:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85') center/cover}.host-copy{padding:55px;display:flex;flex-direction:column;justify-content:center}.host-copy h2{font-family:Georgia,serif;font-size:42px;line-height:1.1;margin-bottom:16px}.host-copy p{color:#dbe4dc;margin-bottom:25px}
+.booking{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:30px;margin-top:20px;box-shadow:0 8px 28px #2633260d}.booking h3{font-family:Georgia,serif;font-size:30px;margin-bottom:7px}.booking p{color:#697069;margin-bottom:18px}.booking-note{font-size:13px;background:#f1eee6;border-radius:12px;padding:12px;margin:15px 0}
+footer{padding:45px 6%;background:var(--dark);color:#d9e0da;display:flex;justify-content:space-between;gap:20px}.footer-logo{font-family:Georgia,serif;font-size:23px;color:white}.footer-note{font-size:12px;color:#9da89f}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:50;padding:18px;overflow:auto}.modal.open{display:flex;align-items:center;justify-content:center}.modal-box{background:var(--paper);max-width:1100px;width:100%;border-radius:24px;overflow:hidden;position:relative;box-shadow:0 25px 80px #0006}.close{position:absolute;right:15px;top:15px;width:42px;height:42px;border:0;border-radius:50%;background:white;font-size:25px;z-index:4;box-shadow:0 3px 15px #0002;cursor:pointer}.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:190px 190px;height:380px;gap:5px;background:#ddd}.gallery-item{border:0;padding:0;cursor:pointer;background-size:cover;background-position:center;position:relative;overflow:hidden}.gallery-item:hover{filter:brightness(.92)}.gallery-item.main{grid-row:1/3}.gallery-item .gallery-label{position:absolute;left:12px;bottom:12px;background:#0009;color:white;padding:6px 9px;border-radius:8px;font-size:11px;font-weight:700}.gallery-more{position:absolute;right:12px;bottom:12px;background:white;color:#253629;padding:8px 11px;border-radius:10px;font-size:12px;font-weight:800}.modal-body{padding:30px}.modal-body h2{font:36px Georgia,serif;margin:5px 0}.modal-grid{display:grid;grid-template-columns:2fr 1fr;gap:25px;margin-top:20px}.amenities{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.amenity{background:#f0eee7;border-radius:20px;padding:7px 10px;font-size:12px}.room-heading{font:26px Georgia,serif;margin:28px 0 12px}.room-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.room-card{height:125px;border-radius:13px;background:center/cover;position:relative;overflow:hidden}.room-card span{position:absolute;left:9px;bottom:8px;background:#0009;color:white;padding:5px 7px;border-radius:7px;font-size:11px}.book-panel{background:#f3efe6;border-radius:16px;padding:20px}.book-panel input,.book-panel select{width:100%;padding:11px;margin:6px 0 10px;border:1px solid #ddd;border-radius:9px;background:white}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.search{grid-template-columns:1fr 1fr}.search .field{border-right:0}.modal-grid{grid-template-columns:1fr}}
+@media(max-width:650px){nav a{display:none}.hero{padding:65px 6%;min-height:680px}.search{grid-template-columns:1fr}.grid,.step-grid{grid-template-columns:1fr}.host{grid-template-columns:1fr}.host-img{min-height:250px}.host-copy{padding:35px}.section-head{display:block}.section-head h2{margin-bottom:8px}.gallery{height:290px;grid-template-rows:142px 142px}.room-strip{grid-template-columns:1fr 1fr}.room-card{height:105px}footer{display:block}.footer-note{margin-top:12px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#" style="text-decoration:none">The Cabin Haven<span>PROPERTY RENTALS</span></a>
+  <nav><a href="#explore">Explore</a><a href="#how">How it works</a><a href="#host">List a property</a><button class="btn alt" onclick="showFavorites()">♡ Favorites</button></nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">Cabins · Apartments · Houses · Villas</div>
+<h1>Find a place worth coming home to.</h1>
+<p>Discover beautiful stays across the United Kingdom — from peaceful woodland cabins to city apartments and luxury holiday homes.</p>
+<div class="search">
+<div class="field"><label>Where</label><input id="locationSearch" placeholder="London, Cornwall, Edinburgh..."></div>
+<div class="field"><label>Check-in</label><input id="checkin" type="date"></div>
+<div class="field"><label>Check-out</label><input id="checkout" type="date"></div>
+<div class="field"><label>Guests</label><select id="guestSearch"><option value="">Any guests</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></div>
+<button class="btn" onclick="searchProperties()">Search</button>
+</div>
+</div>
+</section>
+
+<section id="explore">
+<div class="section-head"><div><h2>Explore stays</h2><p class="muted">Search, compare and open any property for the full details.</p></div><button class="btn alt" onclick="resetFilters()">View all</button></div>
+<div class="results-bar">
+<div id="resultCount" class="muted"></div>
+<div class="filters">
+<select id="typeFilter" onchange="renderProperties()"><option value="">All property types</option><option>Cabin</option><option>Apartment</option><option>House</option><option>Villa</option><option>Cottage</option></select>
+<select id="countryFilter" onchange="renderProperties()"><option value="">All UK areas</option></select>
+<select id="priceFilter" onchange="renderProperties()"><option value="">Any price</option><option value="200">Under £200</option><option value="300">Under £300</option><option value="500">Under £500</option></select>
+<select id="sortFilter" onchange="renderProperties()"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
+</div>
+</div>
+<div id="propertyGrid" class="grid"></div>
+<div id="empty" class="empty"><h3>No stays found</h3><p class="muted">Try another location, country, property type or price range.</p><button class="btn" style="margin-top:15px" onclick="resetFilters()">Clear filters</button></div>
+</section>
+
+<section class="steps" id="how">
+<div class="section-head"><div><h2>How The Cabin Haven works</h2><p class="muted">Simple from discovery to booking.</p></div></div>
+<div class="step-grid">
+<div class="step"><div class="num">1</div><h3>Search</h3><p class="muted">Search by destination, dates, guests, property type and price.</p></div>
+<div class="step"><div class="num">2</div><h3>Discover</h3><p class="muted">Open properties to see photos, amenities, location, pricing and house details.</p></div>
+<div class="step"><div class="num">3</div><h3>Book by email</h3><p class="muted">When you're ready, Book Now opens an email to The Cabin Haven. We confirm availability and provide payment instructions.</p></div>
+</div>
+</section>
+
+<section id="host">
+<div class="host">
+<div class="host-img"></div><div class="host-copy"><h2>Have a property to rent?</h2><p>Bring your cabin, apartment, house, cottage or villa to The Cabin Haven. Property submissions can be reviewed before they appear on the platform.</p><button class="btn" onclick="emailHost()">List your property</button></div>
+</div>
+</section>
+
+<section>
+<div class="booking">
+<h3>Ready to book?</h3>
+<p>The Cabin Haven website does <strong>not</strong> take card or bank payments. Your booking request is sent to our official email so we can confirm the property, dates and payment instructions with you.</p>
+<div class="booking-note">📧 Official booking email: <strong>thecabinhaven6@gmail.com</strong></div>
+<button class="btn" onclick="generalBooking()">Contact The Cabin Haven to book</button>
+</div>
+</section>
+</main>
+
+<footer><div><div class="footer-logo">The Cabin Haven</div><div class="footer-note">Built for better renting · United Kingdom stays · Prices shown in GBP</div></div><div class="footer-note">© 2026 The Cabin Haven · thecabinhaven6@gmail.com</div></footer>
+
+<div class="modal" id="propertyModal" onclick="if(event.target===this)closeModal()">
+<div class="modal-box">
+<button class="close" onclick="closeModal()">×</button>
+<div class="gallery" id="modalGallery"></div>
+<div class="modal-body">
+<div class="muted" id="modalLocation"></div>
+<h2 id="modalTitle"></h2>
+<div class="price" id="modalPrice"></div>
+<div class="details" id="modalDetails"></div>
+<div class="amenities" id="modalAmenities"></div>
+<div class="modal-grid">
+<div>
+<p id="modalDescription"></p>
+<h3 class="room-heading">Explore the rooms</h3>
+<div class="room-strip" id="roomStrip"></div>
+<h3 style="margin-top:28px">About this stay</h3><p class="muted" id="modalAbout" style="margin-top:7px"></p>
+</div>
+<div class="book-panel">
+<h3>Book this stay</h3>
+<label>Check-in</label><input id="modalCheckin" type="date">
+<label>Check-out</label><input id="modalCheckout" type="date">
+<label>Guests</label><select id="modalGuests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select>
+<button class="btn" style="width:100%;margin-top:5px" onclick="bookCurrent()">Book Now — Email Us</button>
+<p style="font-size:11px;color:#70786f;margin-top:10px">Payment is arranged by email after availability is confirmed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+const email='thecabinhaven6@gmail.com';
+const properties=[
+{id:1,name:'Woodland Haven Cabin',city:'New Forest, Hampshire',region:'South East England',type:'Cabin',price:150,guests:2,beds:1,img:'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=85',amen:['Wood burner','Private deck','Forest views'],desc:'A peaceful woodland hideaway surrounded by trees and fresh countryside air.',about:'Ideal for couples and quiet weekend escapes.'},
+{id:2,name:'Valley View Cabin',city:'Northumberland',region:'North East England',type:'Cabin',price:190,guests:2,beds:1,img:'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1200&q=85',amen:['Hot tub','Valley views','Fireplace'],desc:'A cosy cabin with wide-open views and a private place to unwind.',about:'A scenic countryside stay with a relaxed, private atmosphere.'},
+{id:3,name:'Highland Sunset Cabin',city:'Scottish Highlands',region:'Scotland',type:'Cabin',price:210,guests:4,beds:2,img:'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=85',amen:['Fire pit','Mountain views','Parking'],desc:'A highland retreat designed for slow mornings and dramatic sunsets.',about:'Great for small groups looking for a nature-focused escape.'},
+{id:4,name:'London Garden Apartment',city:'London',region:'England',type:'Apartment',price:185,guests:4,beds:2,img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85',amen:['Wi-Fi','Garden','Central location'],desc:'A stylish apartment with a private garden and easy access to London.',about:'A practical city base for couples, families or business travellers.'},
+{id:5,name:'Cotswold Stone Cottage',city:'Cotswolds',region:'South West England',type:'Cottage',price:230,guests:4,beds:2,img:'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85',amen:['Garden','Fireplace','Country views'],desc:'Traditional countryside charm with comfortable modern touches.',about:'A character-filled retreat for a classic English countryside stay.'},
+{id:6,name:'Cornish Coastal Cottage',city:'St Ives, Cornwall',region:'South West England',type:'Cottage',price:245,guests:4,beds:2,img:'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85',amen:['Sea views','Garden','Fireplace'],desc:'A bright coastal cottage close to Cornwall beaches and villages.',about:'A relaxed seaside escape for families or couples.'},
+{id:7,name:'Edinburgh Old Town Apartment',city:'Edinburgh',region:'Scotland',type:'Apartment',price:195,guests:4,beds:2,img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=85',amen:['Wi-Fi','Old Town','Workspace'],desc:'A stylish apartment in the heart of Edinburgh.',about:'Perfect for exploring the city on foot.'},
+{id:8,name:'Snowdonia Mountain House',city:'Snowdonia, Gwynedd',region:'Wales',type:'House',price:220,guests:6,beds:3,img:'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85',amen:['Mountain views','Garden','Parking'],desc:'A spacious Welsh mountain home surrounded by dramatic landscapes.',about:'A great base for hiking and outdoor adventures.'},
+{id:9,name:'Pembrokeshire Coast House',city:'Pembrokeshire',region:'Wales',type:'House',price:235,guests:6,beds:3,img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',amen:['Sea nearby','Garden','Fire pit'],desc:'A comfortable coastal house near Pembrokeshire beaches.',about:'Made for relaxed family holidays and coastal exploring.'},
+{id:10,name:'Lake District Lodge',city:'Windermere, Cumbria',region:'North West England',type:'Cabin',price:260,guests:6,beds:3,img:'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1200&q=85',amen:['Lake views','Hot tub','Fireplace'],desc:'A cosy lodge surrounded by Lake District landscapes.',about:'A peaceful retreat for groups who want nature and walks.'},
+{id:11,name:'Yorkshire Dales Farmhouse',city:'Yorkshire Dales',region:'Yorkshire and the Humber',type:'House',price:275,guests:8,beds:4,img:'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85',amen:['Large garden','Fireplace','Rural views'],desc:'A characterful farmhouse with plenty of space for a group.',about:'A countryside base for exploring the Dales.'},
+{id:12,name:'Bath Georgian Townhouse',city:'Bath',region:'South West England',type:'House',price:290,guests:6,beds:3,img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',amen:['Historic area','Wi-Fi','Kitchen'],desc:'A refined townhouse close to Bath attractions.',about:'A city-break stay combining heritage and comfort.'},
+{id:13,name:'Devon Countryside Villa',city:'Devon',region:'South West England',type:'Villa',price:340,guests:8,beds:4,img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=85',amen:['Pool','Garden','Country views'],desc:'A spacious Devon retreat with a private garden and pool.',about:'Designed for groups looking for a countryside escape.'},
+{id:14,name:'Norfolk Coast Retreat',city:'Norfolk',region:'East of England',type:'Cottage',price:210,guests:4,beds:2,img:'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=85',amen:['Coast nearby','Garden','Parking'],desc:'A peaceful cottage near Norfolk coastline and countryside.',about:'A relaxed option for weekend breaks.'},
+{id:15,name:'Cotswold Luxury Villa',city:'Cotswolds',region:'South West England',type:'Villa',price:420,guests:8,beds:4,img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=85',amen:['Pool','Hot tub','Garden'],desc:'A premium countryside villa for memorable group stays.',about:'Spacious, private and suited to longer escapes.'},
+{id:16,name:'Isle of Skye Retreat',city:'Isle of Skye',region:'Scotland',type:'House',price:310,guests:6,beds:3,img:'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85',amen:['Sea views','Fireplace','Private deck'],desc:'A remote-feeling island retreat with dramatic Scottish scenery.',about:'An atmospheric escape for guests who want nature and quiet.'},
+{id:17,name:'Loch Lomond Cabin',city:'Loch Lomond',region:'Scotland',type:'Cabin',price:285,guests:4,beds:2,img:'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=85',amen:['Loch views','Fire pit','Deck'],desc:'A cosy cabin beside Loch Lomond.',about:'Great for couples, small families and outdoor lovers.'},
+{id:18,name:'Belfast City Apartment',city:'Belfast',region:'Northern Ireland',type:'Apartment',price:165,guests:4,beds:2,img:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=85',amen:['Wi-Fi','Workspace','City centre'],desc:'A modern apartment close to Belfast city attractions.',about:'A convenient base for city breaks.'},
+{id:19,name:'Causeway Coast Cottage',city:'Causeway Coast',region:'Northern Ireland',type:'Cottage',price:225,guests:4,beds:2,img:'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1200&q=85',amen:['Coastal views','Fireplace','Garden'],desc:'A peaceful cottage near the dramatic Causeway Coast.',about:'A scenic choice for coastal drives and walks.'},
+{id:20,name:'London Luxury Penthouse',city:'London',region:'England',type:'Apartment',price:500,guests:6,beds:3,img:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=85',amen:['City views','Wi-Fi','Workspace'],desc:'A premium London apartment with sweeping city views.',about:'A polished city stay for guests wanting comfort and convenience.'}
+];
+
+let currentProperty=null;
+let favorites=JSON.parse(localStorage.getItem('cabinHavenFavorites')||'[]');
+
+function escapeHTML(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function populateCountries(){let c=[...new Set(properties.map(p=>p.region))].sort();document.getElementById('countryFilter').innerHTML='<option value="">All UK areas</option>'+c.map(x=>`<option>${x}</option>`).join('');}
+function renderProperties(){
+ const q=document.getElementById('locationSearch').value.trim().toLowerCase(), type=document.getElementById('typeFilter').value, country=document.getElementById('countryFilter').value, max=Number(document.getElementById('priceFilter').value||0), guests=Number(document.getElementById('guestSearch').value||0), sort=document.getElementById('sortFilter').value;
+ let list=properties.filter(p=>(!q||`${p.name} ${p.city} ${p.region} ${p.country} ${p.type}`.toLowerCase().includes(q))&&(!type||p.type===type)&&(!country||p.region===country)&&(!max||p.price<max)&&(!guests||p.guests>=guests));
+ if(sort==='low')list.sort((a,b)=>a.price-b.price); if(sort==='high')list.sort((a,b)=>b.price-a.price);
+ document.getElementById('resultCount').textContent=`${list.length} ${list.length===1?'stay':'stays'} found`;
+ document.getElementById('propertyGrid').innerHTML=list.map(cardHTML).join('');
+ document.getElementById('empty').style.display=list.length?'none':'block';
+}
+function cardHTML(p){let saved=favorites.includes(p.id);return `<article class="card" onclick="openProperty(${p.id})"><div class="photo" style="background-image:url('${p.img}')"><span class="tag">${p.type}</span><button class="heart ${saved?'saved':''}" onclick="event.stopPropagation();toggleFavorite(${p.id})">${saved?'♥':'♡'}</button></div><div class="card-body"><div class="price">£${p.price} <small>/ night</small></div><h3>${escapeHTML(p.name)}</h3><div class="meta">${escapeHTML(p.city)} · ${escapeHTML(p.region)}</div><div class="details"><span>🛏 ${p.beds} beds</span><span>👥 up to ${p.guests}</span><span>🇬🇧 UK</span></div></div></article>`}
+function searchProperties(){document.getElementById('explore').scrollIntoView({behavior:'smooth'});renderProperties();}
+function resetFilters(){document.getElementById('locationSearch').value='';document.getElementById('guestSearch').value='';document.getElementById('typeFilter').value='';document.getElementById('countryFilter').value='';document.getElementById('priceFilter').value='';document.getElementById('sortFilter').value='featured';renderProperties();}
+function toggleFavorite(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem('cabinHavenFavorites',JSON.stringify(favorites));renderProperties();}
+function showFavorites(){let list=properties.filter(p=>favorites.includes(p.id));if(!list.length){alert('You have no saved stays yet. Tap the ♡ on any property to save it.');return}document.getElementById('locationSearch').value='';document.getElementById('typeFilter').value='';document.getElementById('countryFilter').value='';document.getElementById('priceFilter').value='';document.getElementById('sortFilter').value='featured';document.getElementById('propertyGrid').innerHTML=list.map(cardHTML).join('');document.getElementById('resultCount').textContent=`${list.length} saved ${list.length===1?'stay':'stays'}`;document.getElementById('empty').style.display='none';document.getElementById('explore').scrollIntoView({behavior:'smooth'});}
+const roomPools={
+Cabin:[['Living room','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85'],['Kitchen','https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=900&q=85'],['Bedroom','https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85'],['Bathroom','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85']],
+Apartment:[['Living room','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85'],['Kitchen','https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=900&q=85'],['Bedroom','https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85'],['Bathroom','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85']],
+House:[['Parlour','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85'],['Kitchen','https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=900&q=85'],['Master bedroom','https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85'],['Bathroom','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85']],
+Cottage:[['Sitting room','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85'],['Kitchen','https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=900&q=85'],['Bedroom','https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85'],['Bathroom','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85']],
+Villa:[['Lounge','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85'],['Kitchen','https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=900&q=85'],['Master bedroom','https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85'],['Bathroom','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85']]
+};
+function galleryItems(p){let rooms=roomPools[p.type]||roomPools.House;return [{label:'Exterior',url:p.img},...rooms,{label:'View',url:p.img}].slice(0,6)}
+function openGalleryImage(url){window.open(url,'_blank','noopener');}
+function openProperty(id){currentProperty=properties.find(p=>p.id===id);let p=currentProperty;let imgs=galleryItems(p);document.getElementById('modalGallery').innerHTML=imgs.map((x,i)=>`<button class="gallery-item ${i===0?'main':''}" style="background-image:url('${x.url}')" onclick="openGalleryImage('${x.url}')"><span class="gallery-label">${x.label}</span>${i===5?'<span class="gallery-more">View all photos ↗</span>':''}</button>`).join('');document.getElementById('roomStrip').innerHTML=imgs.slice(1,5).map(x=>`<div class="room-card" style="background-image:url('${x.url}')"><span>${x.label}</span></div>`).join('');document.getElementById('modalLocation').textContent=`${p.city} · ${p.region} · ${p.type}`;document.getElementById('modalTitle').textContent=p.name;document.getElementById('modalPrice').innerHTML=`£${p.price} <small>/ night</small>`;document.getElementById('modalDetails').innerHTML=`<span>🛏 ${p.beds} beds</span><span>👥 up to ${p.guests} guests</span><span>💷 GBP</span>`;document.getElementById('modalAmenities').innerHTML=p.amen.map(a=>`<span class="amenity">${escapeHTML(a)}</span>`).join('');document.getElementById('modalDescription').textContent=p.desc;document.getElementById('modalAbout').textContent=p.about;document.getElementById('modalCheckin').value=document.getElementById('checkin').value;document.getElementById('modalCheckout').value=document.getElementById('checkout').value;document.getElementById('modalGuests').value=Math.min(Number(document.getElementById('guestSearch').value||2),p.guests);document.getElementById('propertyModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('propertyModal').classList.remove('open');document.body.style.overflow='';}
+function bookCurrent(){if(!currentProperty)return;let p=currentProperty,ci=document.getElementById('modalCheckin').value||'Not selected',co=document.getElementById('modalCheckout').value||'Not selected',g=document.getElementById('modalGuests').value;let subject=encodeURIComponent(`Booking request — ${p.name}`);let body=encodeURIComponent(`Hello The Cabin Haven,\n\nI would like to book this property:\n\nProperty: ${p.name}\nLocation: ${p.city}, ${p.country}\nProperty type: ${p.type}\nPrice: £${p.price} per night\nCheck-in: ${ci}\nCheck-out: ${co}\nGuests: ${g}\n\nPlease confirm availability and send me the payment instructions.\n\nThank you.`);window.location.href=`mailto:${email}?subject=${subject}&body=${body}`;}
+function generalBooking(){let subject=encodeURIComponent('Booking enquiry — The Cabin Haven');let body=encodeURIComponent('Hello The Cabin Haven,\n\nI would like help booking a stay. Please send me the available options and payment instructions.\n\nThank you.');window.location.href=`mailto:${email}?subject=${subject}&body=${body}`;}
+function emailHost(){let subject=encodeURIComponent('List my property — The Cabin Haven');let body=encodeURIComponent('Hello The Cabin Haven,\n\nI would like to list my property on The Cabin Haven.\n\nProperty location:\nProperty type:\nPrice per night:\nNumber of guests:\n\nPlease tell me the next steps.\n\nThank you.');window.location.href=`mailto:${email}?subject=${subject}&body=${body}`;}
+populateCountries();renderProperties();
+</script>
+</body>
+</html>
