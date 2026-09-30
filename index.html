@@ -534,20 +534,9 @@ No payment is processed on this website.
 </div>
 
 <script>
-function openBooking(tier){
-
-document.getElementById("bookingText").innerHTML =
-"Selected: <strong>" + tier + "</strong><br><br>Continue through the official show contact on WhatsApp.";
-
-const message =
-"Hello, I am interested in the BLACK HEARTS fan card. My selected tier is: " + tier + ". I would like more information.";
-
-const phone="12297167320";
-
-document.getElementById("whatsappButton").href =
-"https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-document.getElementById("bookingModal").style.display="flex";
+function booking(tier){
+  window.location.href = "https://t.me/Yungbludofficial15";
+}
 }
 
 function closeBooking(){
